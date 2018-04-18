@@ -7,7 +7,7 @@ defmodule ExTwitchTest do
     test "find user by login" do
       {:ok, [user]} = API.users(login: ["joebew42"])
 
-      assert user.login == "joebew42"
+      assert user["login"] == "joebew42"
     end
   end
 end
