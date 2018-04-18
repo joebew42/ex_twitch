@@ -1,18 +1,9 @@
 defmodule ExTwitch do
-  @moduledoc """
-  Documentation for ExTwitch.
-  """
+  defmodule API do
+    def users([login: [login]]) do
+      user = %{login: login}
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> ExTwitch.hello
-      :world
-
-  """
-  def hello do
-    :world
+      {:ok, [user]}
+    end
   end
 end
