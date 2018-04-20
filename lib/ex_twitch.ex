@@ -16,10 +16,10 @@ defmodule ExTwitch do
       {:ok, data}
     end
 
-    def users([id: [id]]) do
+    def users([id: ids]) do
       data =
         client(@token)
-        |> get("/users?id=" <> id)
+        |> get("/users?" <> id_query_parameters(ids))
         |> data
 
       {:ok, data}
@@ -36,6 +36,12 @@ defmodule ExTwitch do
     defp login_query_parameters(logins) do
       logins
       |> Enum.map(& ("login=" <> &1))
+      |> Enum.join("&")
+    end
+
+    defp id_query_parameters(ids) do
+      ids
+      |> Enum.map(& ("id=" <> &1))
       |> Enum.join("&")
     end
   end
