@@ -10,7 +10,7 @@ defmodule ExTwitch do
     def users([login: logins]) do
       data =
         client(@token)
-        |> get("/users?" <> login_query_parameters(logins))
+        |> get("/users?" <> build_query_parameters(logins, "login"))
         |> data
 
       {:ok, data}
@@ -19,7 +19,7 @@ defmodule ExTwitch do
     def users([id: ids]) do
       data =
         client(@token)
-        |> get("/users?" <> id_query_parameters(ids))
+        |> get("/users?" <> build_query_parameters(ids, "id"))
         |> data
 
       {:ok, data}
@@ -33,15 +33,9 @@ defmodule ExTwitch do
 
     defp data(%Tesla.Env{body: %{"data" => data}}), do: data
 
-    defp login_query_parameters(logins) do
-      logins
-      |> Enum.map(& ("login=" <> &1))
-      |> Enum.join("&")
-    end
-
-    defp id_query_parameters(ids) do
-      ids
-      |> Enum.map(& ("id=" <> &1))
+    defp build_query_parameters(list, parameter) do
+      list
+      |> Enum.map(& (parameter <> "=" <> &1))
       |> Enum.join("&")
     end
   end
