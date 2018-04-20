@@ -16,6 +16,15 @@ defmodule ExTwitch do
       {:ok, data}
     end
 
+    def users([id: [id]]) do
+      data =
+        client(@token)
+        |> get("/users?id=" <> id)
+        |> data
+
+      {:ok, data}
+    end
+
     defp client(token) do
       Tesla.build_client [
         {Tesla.Middleware.Headers, %{"Authorization" => "Bearer " <> token}}
