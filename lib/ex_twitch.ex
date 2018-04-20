@@ -7,19 +7,13 @@ defmodule ExTwitch do
     plug Tesla.Middleware.BaseUrl, "https://api.twitch.tv/helix"
     plug Tesla.Middleware.JSON
 
-    def users([login: logins]) do
+    def users(opts) do
+      login_tuples = opts |> get_value(:login) |> to_tuples("login")
+      id_tuples = opts |> get_value(:id) |> to_tuples("id")
+
       data =
         client(@token)
-        |> get("/users?" <> build_query_parameters(logins, "login"))
-        |> data
-
-      {:ok, data}
-    end
-
-    def users([id: ids]) do
-      data =
-        client(@token)
-        |> get("/users?" <> build_query_parameters(ids, "id"))
+        |> get("/users?" <> to_query_parameters(login_tuples ++ id_tuples))
         |> data
 
       {:ok, data}
@@ -33,9 +27,21 @@ defmodule ExTwitch do
 
     defp data(%Tesla.Env{body: %{"data" => data}}), do: data
 
-    defp build_query_parameters(list, parameter) do
+    defp get_value(tuples, key) do
+      tuples
+      |> Enum.find(fn({tuple_key, _value}) -> tuple_key == key end)
+      |> get_value
+    end
+
+    defp get_value(nil), do: nil
+    defp get_value({_key, value}), do: value
+
+    defp to_tuples(nil, _tuple_key), do: []
+    defp to_tuples(list, tuple_key), do: Enum.map(list, & {tuple_key, &1})
+
+    defp to_query_parameters(list) do
       list
-      |> Enum.map(& (parameter <> "=" <> &1))
+      |> Enum.map(fn({key, value}) -> key <> "=" <> value end)
       |> Enum.join("&")
     end
   end
