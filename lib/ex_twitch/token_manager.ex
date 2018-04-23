@@ -2,13 +2,13 @@ defmodule ExTwitch.TokenManager do
   use GenServer
   use Tesla
 
-  plug Tesla.Middleware.BaseUrl, "https://id.twitch.tv/oauth2"
-  plug Tesla.Middleware.JSON
+  @twitch_client_id System.get_env("TWITCH_CLIENT_ID")
+  @twitch_secret System.get_env("TWITCH_SECRET")
 
   @token_manager :ex_twitch_token_manager
 
-  @twitch_client_id System.get_env("TWITCH_CLIENT_ID")
-  @twitch_secret System.get_env("TWITCH_SECRET")
+  plug Tesla.Middleware.BaseUrl, "https://id.twitch.tv/oauth2"
+  plug Tesla.Middleware.JSON
 
   def start_link(_opts) do
     GenServer.start_link(__MODULE__, [], name: @token_manager)

@@ -2,7 +2,7 @@ defmodule ExTwitch do
   defmodule API do
     use Tesla
 
-    @token System.get_env("TWITCH_OAUTH_TOKEN")
+    alias ExTwitch.TokenManager
 
     plug Tesla.Middleware.BaseUrl, "https://api.twitch.tv/helix"
     plug Tesla.Middleware.JSON
@@ -12,14 +12,20 @@ defmodule ExTwitch do
       id_tuples = opts |> get_value(:id) |> to_tuples("id")
 
       data =
-        client(@token)
+        read_token()
+        |> build_client
         |> get("/users?" <> to_query_parameters(login_tuples ++ id_tuples))
         |> data
 
       {:ok, data}
     end
 
-    defp client(token) do
+    defp read_token() do
+      {:ok, token} = TokenManager.token()
+      token
+    end
+
+    defp build_client(token) do
       Tesla.build_client [
         {Tesla.Middleware.Headers, %{"Authorization" => "Bearer " <> token}}
       ]

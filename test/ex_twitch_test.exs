@@ -1,10 +1,15 @@
 defmodule ExTwitchTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias ExTwitch.API
 
   @joebew42_id "133262570"
   @jluiiizz_id "112200789"
+
+  setup do
+    start_supervised ExTwitch.TokenManager
+    %{}
+  end
 
   describe "#users" do
     test "find user by its login" do
