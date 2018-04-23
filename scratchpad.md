@@ -2,20 +2,7 @@
 
 A client implementation for the new Twitch API
 
-- [Twitch API status page](https://devstatus.twitch.tv/)
-- [API resouces reference](https://dev.twitch.tv/docs/api/reference/)
-
-Obtain an access token
-
-POST https://id.twitch.tv/oauth2/token
-    ?client_id=<your client ID>
-    &client_secret=<your client secret>
-    &grant_type=client_credentials
-    &scope=<space-separated list of scopes>
-
 ## DOING
-
-- write a first `README.md` for the project
 
 ## TODO
 
@@ -29,6 +16,7 @@ POST https://id.twitch.tv/oauth2/token
 
 ## DONE
 
+- write a first `README.md` for the project
 - implement the [users](https://dev.twitch.tv/docs/api/reference/#get-users) API
 - `/users` handle both `login` and `id` fields
 - `/users` handle more than one `field` id

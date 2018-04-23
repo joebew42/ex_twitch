@@ -1,21 +1,32 @@
 # ExTwitch
 
-**TODO: Add description**
+ExTwitch is a [**early**](scratchpad.md) stage development of an Elixir client implementation for the [new Twitch API](https://dev.twitch.tv/docs/api/)
 
-## Installation
+## Setup
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ex_twitch` to your list of dependencies in `mix.exs`:
+Obtain an `OAuth access token` and export it as environment variable
 
-```elixir
-def deps do
-  [
-    {:ex_twitch, "~> 0.1.0"}
-  ]
-end
+```
+export TWITCH_OAUTH_TOKEN=<YOUR_TOKEN>
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/ex_twitch](https://hexdocs.pm/ex_twitch).
+In order to obtain an access token a [Twitch app must be created](https://dev.twitch.tv/dashboard/apps/create), and with the `clientId` and `clientSecret` we have to create an access token by making a HTTP POST request:
 
+```
+curl -X POST "https://id.twitch.tv/oauth2/token?client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=client_credentials"
+```
+
+## Example Usage
+
+An example of querying the [`/users`](https://dev.twitch.tv/docs/api/reference/#get-users) endpoint
+
+```
+{:ok, users} = ExTwitch.API.users(login: ["joebew42"])
+```
+
+## Run the tests
+
+```
+mix deps.get
+mix test
+```
