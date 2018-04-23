@@ -7,7 +7,7 @@ defmodule ExTwitchTest do
   @jluiiizz_id "112200789"
 
   describe "#users" do
-    test "find user by login" do
+    test "find user by its login" do
       {:ok, users} = API.users(login: ["joebew42"])
 
       assert contains?(users, "joebew42")
@@ -20,7 +20,7 @@ defmodule ExTwitchTest do
       assert contains?(users, "jluiiizz")
     end
 
-    test "find user by id" do
+    test "find user by its id" do
       {:ok, users} = API.users(id: [@joebew42_id])
 
       assert contains?(users, "joebew42")
@@ -33,7 +33,7 @@ defmodule ExTwitchTest do
       assert contains?(users, "jluiiizz")
     end
 
-    test "find users by both their login and id" do
+    test "find users by both their logins and ids" do
       {:ok, users} = API.users(login: ["joebew42"], id: [@jluiiizz_id])
 
       assert contains?(users, "joebew42")
