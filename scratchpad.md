@@ -4,12 +4,10 @@ A client implementation for the new Twitch API
 
 ## DOING
 
+- introduce a `TokenManager` that will be responsible to get the oauth token that is then used by the client
+
 ## TODO
 
-- where we have to put the `clientId` and `secret` information
-- how to deal with the OAuth token?
-  - should be the client that creates it for us?
-  - what to do when the token expires?
 - understand how other wrote client implementation for external APIs
 - think about move the `API` module out from the `ExTwitch` top level module
 - [?] what is `formatter.exs`
