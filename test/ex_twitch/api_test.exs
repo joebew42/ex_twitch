@@ -1,4 +1,4 @@
-defmodule ExTwitchTest do
+defmodule ExTwitch.APITest do
   use ExUnit.Case, async: true
 
   alias ExTwitch.API

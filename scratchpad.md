@@ -4,17 +4,15 @@ A client implementation for the new Twitch API
 
 ## DOING
 
-- extract the client outside the `TokenManager`
-
 ## TODO
 
+- extract the client outside the `TokenManager`
 - handle the token Expiration in the `TokenManager`
-- understand how other wrote client implementation for external APIs
-- think about move the `API` module out from the `ExTwitch` top level module
 - [?] what is `formatter.exs`
 
 ## DONE
 
+- think about move the `API` module out from the `ExTwitch` top level module
 - add the `TokenManager` as collaborator of the `ExTwitch` client
 - introduce a `TokenManager` that will be responsible to get the oauth token that is then used by the client
 - write a first `README.md` for the project
