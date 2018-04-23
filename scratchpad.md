@@ -6,8 +6,11 @@ A client implementation for the new Twitch API
 
 ## TODO
 
+- implement the [`/games/top`](https://dev.twitch.tv/docs/api/reference/#get-top-games)
+- handle the token Expiration in the `TokenManager` and renew it
+  - read about [timeouts and genserver](https://elixirforum.com/t/how-to-stop-gen-server-by-timeout/1742)
+  - or think about delegating another process (e.g. `TokenRenewalProcess`) that will notify the `TokenManager` to renew the token
 - extract the client outside the `TokenManager`
-- handle the token Expiration in the `TokenManager`
 - [?] what is `formatter.exs`
 
 ## DONE
@@ -23,7 +26,7 @@ A client implementation for the new Twitch API
 - `/users` handle more than one `login` field
 - how to make http request with Elixir (are there good http libraries)
 - how to deal with the authentication, tokens, etc ...
-- take a look at the documentation of the [new Twitch API](https://dev.twitch.tv/docs/api/
+- take a look at the documentation of the [new Twitch API](https://dev.twitch.tv/docs/api/)
   - to understand from which API feature we could start
 - create an empty mix project and commit
 - create a github repository
