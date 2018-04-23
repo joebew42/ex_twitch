@@ -12,6 +12,6 @@ defmodule ExTwitch.TokenManagerTest do
   test "should get the oauth token" do
     {:ok, token} = TokenManager.token()
 
-    assert token != nil
+    assert String.length(token) == 30
   end
 end
