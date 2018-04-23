@@ -4,16 +4,11 @@ ExTwitch is a [**early**](scratchpad.md) stage development of an Elixir client i
 
 ## Setup
 
-Obtain an `OAuth access token` and export it as environment variable
+Create a [Twitch app](https://dev.twitch.tv/dashboard/apps/create), and then export the `clientId` and the `secret` as environment variables:
 
 ```
-export TWITCH_OAUTH_TOKEN=<YOUR_TOKEN>
-```
-
-In order to obtain an access token a [Twitch app must be created](https://dev.twitch.tv/dashboard/apps/create), and with the `clientId` and `clientSecret` we have to create an access token by making a HTTP POST request:
-
-```
-curl -X POST "https://id.twitch.tv/oauth2/token?client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&grant_type=client_credentials"
+export TWITCH_CLIENT_ID=<YOUR_CLIENT_ID>
+export TWITCH_SECRET=<YOUR_SECRET>
 ```
 
 ## Example Usage
