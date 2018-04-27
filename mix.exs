@@ -20,7 +20,9 @@ defmodule ExTwitch.MixProject do
   defp deps do
     [
       {:tesla, "~> 0.10.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:mock, "~> 0.3.0", only: :test},
+      {:uuid, "~> 1.1", only: :test}
     ]
   end
 end

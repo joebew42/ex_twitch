@@ -4,8 +4,9 @@ defmodule ExTwitch.TokenRetrievalTest do
   alias ExTwitch.TokenRetrieval
 
   test "should create a new token" do
-    %{token: token} = TokenRetrieval.create_token()
+    %{token: token, expires_in: expiration} = TokenRetrieval.create_token()
 
     assert String.length(token) == 30
+    assert is_number(expiration)
   end
 end

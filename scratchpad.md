@@ -4,16 +4,16 @@ A client implementation for the new Twitch API
 
 ## DOING
 
-- handle the token Expiration in the `TokenManager` and renew it
-  - read about [receiving regular messages](https://hexdocs.pm/elixir/GenServer.html#module-receiving-regular-messages)
-
 ## TODO
 
+- rename `TokenRetrieval` to `Token`
 - implement the [`/games/top`](https://dev.twitch.tv/docs/api/reference/#get-top-games)
 - [?] what is `formatter.exs`
 
 ## DONE
 
+- handle the token Expiration in the `TokenManager` and renew it
+  - read about [receiving regular messages](https://hexdocs.pm/elixir/GenServer.html#module-receiving-regular-messages)
 - extract the client outside the `TokenManager`, call it `TokenRetrieval`
 - think about move the `API` module out from the `ExTwitch` top level module
 - add the `TokenManager` as collaborator of the `ExTwitch` client

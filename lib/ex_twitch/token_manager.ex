@@ -23,11 +23,9 @@ defmodule ExTwitch.TokenManager do
   end
 
   def handle_info(:retrieve_token, _token) do
-    {:noreply, retrieve_token()}
-  end
+    %{token: token, expires_in: expiration} = TokenRetrieval.create_token()
+    Process.send_after(@token_manager, :retrieve_token, expiration)
 
-  defp retrieve_token() do
-    %{token: token} = TokenRetrieval.create_token()
-    token
+    {:noreply, token}
   end
 end
