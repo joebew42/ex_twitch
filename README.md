@@ -25,3 +25,5 @@ An example of querying the [`/users`](https://dev.twitch.tv/docs/api/reference/#
 mix deps.get
 mix test
 ```
+
+**NOTE:** If you change the `TWITCH_CLIENT_ID` and the `TWITCH_SECRET` remember to run a `mix clean`
