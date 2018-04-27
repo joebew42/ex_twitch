@@ -10,11 +10,11 @@ A client implementation for the new Twitch API
 - handle the token Expiration in the `TokenManager` and renew it
   - read about [timeouts and genserver](https://elixirforum.com/t/how-to-stop-gen-server-by-timeout/1742)
   - or think about delegating another process (e.g. `TokenRenewalProcess`) that will notify the `TokenManager` to renew the token
-- extract the client outside the `TokenManager`
 - [?] what is `formatter.exs`
 
 ## DONE
 
+- extract the client outside the `TokenManager`, call it `TokenRetrieval`
 - think about move the `API` module out from the `ExTwitch` top level module
 - add the `TokenManager` as collaborator of the `ExTwitch` client
 - introduce a `TokenManager` that will be responsible to get the oauth token that is then used by the client
