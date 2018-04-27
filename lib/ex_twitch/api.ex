@@ -7,8 +7,8 @@ defmodule ExTwitch.API do
   plug Tesla.Middleware.JSON
 
   def users(opts) do
-    login_tuples = opts |> get_value(:login) |> to_tuples("login")
-    id_tuples = opts |> get_value(:id) |> to_tuples("id")
+    login_tuples = Keyword.get(opts, :login) |> to_tuples("login")
+    id_tuples = Keyword.get(opts,:id) |> to_tuples("id")
 
     data =
       read_token()
@@ -37,9 +37,6 @@ defmodule ExTwitch.API do
     |> Enum.find(fn({tuple_key, _value}) -> tuple_key == key end)
     |> get_value
   end
-
-  defp get_value(nil), do: nil
-  defp get_value({_key, value}), do: value
 
   defp to_tuples(nil, _tuple_key), do: []
   defp to_tuples(list, tuple_key), do: Enum.map(list, & {tuple_key, &1})

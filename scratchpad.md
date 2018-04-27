@@ -7,10 +7,12 @@ A client implementation for the new Twitch API
 ## TODO
 
 - implement the [`/games/top`](https://dev.twitch.tv/docs/api/reference/#get-top-games)
+  - introduce the function `API.games_top`
 - [?] what is `formatter.exs`
 
 ## DONE
 
+- replace the `API.get_value` with `Keyword.get`
 - rename `TokenRetrieval` in `Token`
 - handle the token Expiration in the `TokenManager` and renew it
   - read about [receiving regular messages](https://hexdocs.pm/elixir/GenServer.html#module-receiving-regular-messages)
