@@ -4,12 +4,12 @@ A client implementation for the new Twitch API
 
 ## DOING
 
+- handle the token Expiration in the `TokenManager` and renew it
+  - read about [receiving regular messages](https://hexdocs.pm/elixir/GenServer.html#module-receiving-regular-messages)
+
 ## TODO
 
 - implement the [`/games/top`](https://dev.twitch.tv/docs/api/reference/#get-top-games)
-- handle the token Expiration in the `TokenManager` and renew it
-  - read about [timeouts and genserver](https://elixirforum.com/t/how-to-stop-gen-server-by-timeout/1742)
-  - or think about delegating another process (e.g. `TokenRenewalProcess`) that will notify the `TokenManager` to renew the token
 - [?] what is `formatter.exs`
 
 ## DONE

@@ -10,8 +10,8 @@ defmodule ExTwitch.TokenManager do
   end
 
   def init(_args) do
-    token = create_token()
-    {:ok, token}
+    send(self(), :retrieve_token)
+    {:ok, nil}
   end
 
   def token() do
@@ -22,7 +22,11 @@ defmodule ExTwitch.TokenManager do
     {:reply, {:ok, token}, token}
   end
 
-  defp create_token() do
+  def handle_info(:retrieve_token, _token) do
+    {:noreply, retrieve_token()}
+  end
+
+  defp retrieve_token() do
     %{token: token} = TokenRetrieval.create_token()
     token
   end
