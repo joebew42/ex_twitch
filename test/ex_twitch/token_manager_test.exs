@@ -3,7 +3,7 @@ defmodule ExTwitch.TokenManagerTest do
 
   import Mock
 
-  alias ExTwitch.TokenRetrieval
+  alias ExTwitch.Token
   alias ExTwitch.TokenManager
 
   setup do
@@ -19,7 +19,7 @@ defmodule ExTwitch.TokenManagerTest do
   end
 
   test "should renew an expired token" do
-    with_mock TokenRetrieval, [create_token: &random_token/0]  do
+    with_mock Token, [create: &random_token/0]  do
       {:ok, first_token} = TokenManager.token()
       Process.sleep(2000)
 

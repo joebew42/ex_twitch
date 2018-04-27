@@ -1,7 +1,7 @@
 defmodule ExTwitch.TokenManager do
   use GenServer
 
-  alias ExTwitch.TokenRetrieval
+  alias ExTwitch.Token
 
   @token_manager :ex_twitch_token_manager
 
@@ -23,7 +23,7 @@ defmodule ExTwitch.TokenManager do
   end
 
   def handle_info(:retrieve_token, _token) do
-    %{token: token, expires_in: expiration} = TokenRetrieval.create_token()
+    %{token: token, expires_in: expiration} = Token.create()
     Process.send_after(@token_manager, :retrieve_token, expiration)
 
     {:noreply, token}
